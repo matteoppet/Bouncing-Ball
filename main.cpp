@@ -12,10 +12,14 @@ int main() {
     Ball ball;
 
     while (!WindowShouldClose()) {
+
+        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+            ball.reset();
+            ball.position = GetMousePosition();
+        }
+
         ball.collision = ball.detect_collisions(WINDOW_SIZE_X, WINDOW_SIZE_Y);
         ball.update();
-
-        std::cout << ball.acting_force << std::endl;
 
         BeginDrawing();
             ClearBackground(BLACK);

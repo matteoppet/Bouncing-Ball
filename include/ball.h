@@ -15,16 +15,17 @@ class Ball {
         float radius = 15;
         float mass = 0.1; // kg
         float gravity = 9;
-        float coeff_restitution = 0;
+        float coeff_restitution = 0.5;
         float impact_time = 0.016;
 
         float acting_force = 0;
-        bool collision = 0;
+        bool collision = false;
         double delta_time = 0.016;
 
         void draw();
         void update();
         bool detect_collisions(const int &window_size_x, const int &window_size_y);
+        void reset();
 };
 
 #endif

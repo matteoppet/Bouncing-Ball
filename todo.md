@@ -8,7 +8,7 @@ its movements realistically using physics. You can add random objects to interac
 - [x] 2. Simulate downwards force (gravity * mass)
 - [x] 3. Detect collisions (window boundaries)
 - [x] 4. Simulates opposite force (force making it bouncing)
-- [ ] 5. Spawn ball with left click mouse
+- [x] 5. Spawn ball with left click mouse
 - [ ] 6. Add vertical velocity adaption to the physics calculations
 - [ ] 7. Create other object
 - [ ] 8. Detect collision with new objects

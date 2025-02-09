@@ -38,3 +38,13 @@ bool Ball::detect_collisions(const int &window_size_x, const int &window_size_y)
     }
     return false;
 }
+
+
+void Ball::reset() {
+    vel_v = 0;
+    vel_h = 0;
+    acc_v = 0;
+    acc_h = 0;
+    acting_force = 0;
+    collision = false;
+}
