@@ -1,6 +1,9 @@
 #include "include/raylib.h"
 #include "include/ball.h"
+#include "include/objects.h"
 #include <iostream>
+#include <vector>
+#include <string>
 
 const int WINDOW_SIZE_X = 800;
 const int WINDOW_SIZE_Y = 800;
@@ -10,16 +13,21 @@ int main() {
     SetTargetFPS(60);
 
     Ball ball;
+    std::vector<Object> objects;
+    char* FPS;
 
     while (!WindowShouldClose()) {
-
+        
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
             ball.reset();
             ball.position = GetMousePosition();
+        } else if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT)) {
+            float mouse_position_x = GetMousePosition().x;
+            float mouse_position_y = GetMousePosition().y;
+            objects.emplace_back(Object(mouse_position_x, mouse_position_y));
         }
 
-        ball.collision = ball.detect_collisions(WINDOW_SIZE_X, WINDOW_SIZE_Y);
-        ball.update();
+        ball.update(WINDOW_SIZE_X, WINDOW_SIZE_Y, objects);
 
         BeginDrawing();
             ClearBackground(BLACK);
@@ -27,8 +35,15 @@ int main() {
             // draw text
             DrawText(TextFormat("Gravity: %02.02f m/s", ball.gravity), 10, 10, 20, WHITE);
             DrawText(TextFormat("Mass: %02.02f grams", ball.mass), 10, 35, 20, WHITE);
+            DrawText(TextFormat("FPS: %02.02f", GetFPS()), 10, 50, 20, WHITE);
 
             ball.draw();
+
+            // draw objects using pointers
+            for (Object& object : objects) {
+                object.draw();
+            }
+        
         EndDrawing();
     }
 

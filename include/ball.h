@@ -3,6 +3,10 @@
 
 #include "raylib.h"
 #include <iostream>
+#include <cmath>
+#include <string>
+#include <vector>
+#include "objects.h"
 
 class Ball {
     public:
@@ -15,17 +19,19 @@ class Ball {
         float radius = 15;
         float mass = 0.1; // kg
         float gravity = 9;
-        float coeff_restitution = 0.5;
+        float coeff_restitution = 0.8;
         float impact_time = 0.016;
 
         float acting_force = 0;
         bool collision = false;
         double delta_time = 0.016;
+        std::string normal_direction;
 
         void draw();
-        void update();
-        bool detect_collisions(const int &window_size_x, const int &window_size_y);
+        void update(const int &window_size_x, const int &window_size_y, std::vector<Object>& objects);
+        bool detect_collisions(const int &window_size_x, const int &window_size_y, std::vector<Object>& objects);
         void reset();
+        Vector2 calculate_normal();
 };
 
 #endif
