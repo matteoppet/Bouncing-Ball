@@ -14,7 +14,6 @@ int main() {
 
     Ball ball;
     std::vector<Object> objects;
-    char* FPS;
 
     while (!WindowShouldClose()) {
         
@@ -35,7 +34,6 @@ int main() {
             // draw text
             DrawText(TextFormat("Gravity: %02.02f m/s", ball.gravity), 10, 10, 20, WHITE);
             DrawText(TextFormat("Mass: %02.02f grams", ball.mass), 10, 35, 20, WHITE);
-            DrawText(TextFormat("FPS: %02.02f", GetFPS()), 10, 50, 20, WHITE);
 
             ball.draw();
 
@@ -43,6 +41,8 @@ int main() {
             for (Object& object : objects) {
                 object.draw();
             }
+
+            DrawFPS(10, 65);
         
         EndDrawing();
     }
